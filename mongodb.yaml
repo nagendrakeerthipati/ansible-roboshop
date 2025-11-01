@@ -1,0 +1,28 @@
+- name: install and enable mongoDB
+  hosts: frontend
+  become: true
+  tasks:
+    - name: install MongoDB package
+      ansible.builtin.dnf:
+        name: mongodb-org
+        state: present
+
+    - name: start and enable mongoDB service
+      ansible.builtin.service:
+        name: mongod
+        state: started
+        enabled: yes
+# - name: Install and enable MongoDB
+#   hosts: frontend
+#   become: true
+#   tasks:
+#     - name: Install MongoDB package
+#       ansible.builtin.dnf:
+#         name: mongodb-org
+#         state: present
+
+#     - name: Start and enable MongoDB service
+#       ansible.builtin.service:
+#         name: mongod
+#         state: started
+#
