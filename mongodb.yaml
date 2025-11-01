@@ -17,17 +17,15 @@
         name: mongod
         state: started
         enabled: yes
-# - name: Install and enable MongoDB
-#   hosts: frontend
-#   become: true
-#   tasks:
-#     - name: Install MongoDB package
-#       ansible.builtin.dnf:
-#         name: mongodb-org
-#         state: present
 
-#     - name: Start and enable MongoDB service
-#       ansible.builtin.service:
-#         name: mongod
-#         state: started
-#
+    - name: Update MongoDB bind IP to 0.0.0.0
+      ansible.builtin.replace:
+        path: /etc/mongod.conf
+        regexp: "127.0.0.1"
+        replace: "0.0.0.0"
+        backup: yes
+
+    - name: Restart MongoDB service
+      ansible.builtin.service:
+        name: mongod
+        state: restarted
