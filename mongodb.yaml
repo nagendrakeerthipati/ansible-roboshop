@@ -1,5 +1,5 @@
 - name: install and enable mongoDB
-  hosts: Backend
+  hosts: mongodb
   become: true
   tasks:
     - name: copy mongoDB repo
