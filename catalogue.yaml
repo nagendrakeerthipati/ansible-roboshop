@@ -46,7 +46,6 @@
       ansible.builtin.copy:
         src: catalogue.service
         dest: /etc/systemd/system/catalogue.service
-        remote_src: yes
 
     - name: Install npm dependencies
       community.general.npm:
