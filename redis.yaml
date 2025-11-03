@@ -11,7 +11,7 @@
     - name: install redis module
       ansible.builtin.dnf:
         name: redis
-        state: presentx
+        state: present
 
     - name: replace the port number
       ansible.builtin.replace:
