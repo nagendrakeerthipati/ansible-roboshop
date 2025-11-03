@@ -33,7 +33,7 @@
         dest: /app
         remote_src: yes
 
-    - name: download nodejs using NPM
+    - name: install dependencies
       community.general.npm:
         path: /app
 
