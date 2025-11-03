@@ -1,0 +1,33 @@
+- name: creating redis module
+  hosts: redis
+  become: true
+  tasks:
+    - name: disable redis module
+      ansibile.builtin.command: dnf module disable redis -y
+
+    - name: enable redis module
+      ansible.builtin.command: dnf module enable redis:7 -y
+
+    - name: install redis module
+      ansible.builtin.dnf:
+        name: redis
+        state: presentx
+
+    - name: replace the port number
+      ansible.builtin.replace:
+        regexp: "127.0.0.1"
+        replace: "0.0.0.0"
+        backup: yes
+
+    - name: disable protection mode
+      ansibile.builtin.lineinfile:
+        path: /etc/redis/redis.conf
+        regexp: "protected-mode"
+        line: "protected-mode no" # we will check if '' quotes work or not
+        backup: yes
+
+    - name: enable and start redis
+      ansible.builtin.service:
+        name: redis
+        state: present
+        enabled: yes
