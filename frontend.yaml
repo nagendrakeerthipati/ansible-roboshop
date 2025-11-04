@@ -5,15 +5,11 @@
   tasks:
     - name: Disable nginx module
       ansible.builtin.command: dnf module disable nginx -y
-      args:
-        warn: false
       register: disable_nginx
       changed_when: "'Nothing to do' not in disable_nginx.stdout"
 
     - name: Enable nginx:1.24 module
       ansible.builtin.command: dnf module enable nginx:1.24 -y
-      args:
-        warn: false
       register: enable_nginx
       changed_when: "'Nothing to do' not in enable_nginx.stdout"
 
