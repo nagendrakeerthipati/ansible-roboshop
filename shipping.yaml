@@ -3,10 +3,13 @@
   become: yes
 
   tasks:
-    - name: install maveen
+    - name: install maveen and mqsl
       ansible.builtin.dnf:
-        name: maven
+        name: "{{ item }}"
         state: present
+      loop:
+        - maven
+        - mysql
 
     - name: create system user
       ansible.builtin.user:
