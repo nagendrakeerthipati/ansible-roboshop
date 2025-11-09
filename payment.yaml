@@ -37,7 +37,6 @@
 
     - name: download pip3
       ansible.builtin.pip:
-        name: pip3
         requirements: requirements.txt
         executable: pip3.9
       args:
