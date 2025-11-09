@@ -10,6 +10,7 @@
       loop:
         - maven
         - mysql
+        - cryptography
 
     - name: create system user
       ansible.builtin.user:
